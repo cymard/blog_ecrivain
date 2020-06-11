@@ -1,4 +1,4 @@
 <?php
 
-require 'Articles.php';
+require 'Article.php';
 require 'index.php';
