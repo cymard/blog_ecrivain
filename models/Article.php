@@ -1,6 +1,8 @@
 <?php
 
-class Article {
+require('models/ConnectDb.php');
+
+class Article extends ConnectDb{
     
     private $content;
     private $title;
@@ -50,6 +52,13 @@ class Article {
     }
 
 
+    //recuperer les posts de la base de données 
+    public function getPosts(){
+        $req = $this->$db->query("SELECT all FROM articles");
+        return $donnees = $req->fetch();
+    }
+
+
     //hydratation des données
 
     public function hydrate(array $donnees){
@@ -62,24 +71,6 @@ class Article {
                 //on appelle la methode en lui attribuant la valeur
                 $this->$method($value);
             }
-        }
-    }
-
-
-
-
-
-
-    //les actions possibles
-
-    public function getTitleFromDb($id = $this->$id){
-        //on selectionne le titre de l'article en fonction de son id
-        $queryTitle = $this->$dbh->query("SELECT title FROM articles WHERE id = $id ");
-
-        //afficher la valeur de $queryTitle qui est un objet PDOStatement 
-        while ($donnees = $queryTitle->fetch()){
-            $this->setTitle($donnees['title']);
-            echo $this->title;
         }
     }
 
