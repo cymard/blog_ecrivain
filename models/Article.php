@@ -1,8 +1,8 @@
 <?php
 
-require('models/ConnectDb.php');
+require 'Model.php';
 
-class Article extends ConnectDb{
+class Article extends Model{
     
     private $content;
     private $title;
@@ -12,50 +12,43 @@ class Article extends ConnectDb{
 
     //les getteurs
     public function getId(){
-        return $this->$id;
+        return $this->id;
     }
 
     public function getContent(){
-       return $this->$content;
+       return $this->content;
     }
 
     public function getTitle(){
-        return $this->$title;
+        return $this->title;
     }
 
     public function getDate(){
-        return $this->$date;
+        return $this->date;
     }
 
     
     //les setteurs
     public function setContent($content){
         if(is_string($content)){
-            $this->$content = $content;
+            $this->content = $content;
         }  
     }
 
     public function setTitle($title){
         if(is_string($title)){
-            $this->$title = $title;
+            $this->title = $title;
         }
     }
 
     public function setDate($date){
-        $this->$date = $date;//verif regex
+        $this->date = $date;//verif regex
     }
 
     public function setId($id){
         if(is_int($id)){
-            $this->$id = $id;
+            $this->id = $id;
         }
-    }
-
-
-    //recuperer les posts de la base de données 
-    public function getPosts(){
-        $req = $this->$db->query("SELECT all FROM articles");
-        return $donnees = $req->fetch();
     }
 
 
