@@ -1,28 +1,33 @@
-<?php 
-$title = 'Accueil'; 
-?>
+<?php $title = 'Accueil'; ?>
 
 <?php $other = ''; ?>
 
 
 <?php ob_start(); ?>
 
-<?php 
-while($result = $req->fetch()){
-?>
-    <?php $article->hydrate($result); //hydratation des variables de la class Article, on a: $article->getTitle() qui renvoie directement tous les titres alors que $result['title'] renvoie un titre à la fois ?>
 
-    <p><strong><?php echo $result['title']; // echo $article->getTitle();?></strong></p>
-    <p><?php echo $result['content']; ?></p>
+    <?php for($i = 0;$i < count($result); $i++ ){?>
 
-    
 
-<?php } ?>
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="card-title text-uppercase"><?php echo $result[$i]['title'];?></h3>
+                <p class="card-text "><?php echo $result[$i]['content']; ?></p>
+                <a href="#" class="btn btn-success">Lire l'article</a>
+            </div>
+            <div class="card-footer text-muted">
+               <?php echo 'publié le '.$result[$i]['date']?>
+            </div>
+        </div>
+
+
+    <?php } ?>
+
 
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require '../template.php';
+<?php require 'template.php'; ?>
 
 
 

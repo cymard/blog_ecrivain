@@ -67,5 +67,25 @@ class Article extends Model{
         }
     }
 
+    public function hydrateV2(array $donnees){
+        //hydrate adapté au return de fetchAll()
+        for($i = 0;$i < count($donnees); $i++ ){
+            $this->setTitle($donnees[$i]['title']);
+            $this->setContent($donnees[$i]['content']);
+            $this->setId($donnees[$i]['id']);
+            $this->setDate($donnees[$i]['date']);
+        }
+
+        // //titres
+        // $this->setTitle($donnees[0]['title']);
+        // $this->setTitle($donnees[1]['title']);
+        // $this->setTitle($donnees[2]['title']);
+
+        // //content
+        // $this->setContent($donnees[0]['content']);
+        // $this->setContent($donnees[1]['content']);
+        // $this->setContent($donnees[2]['content']);
+    }
+
 
 }
