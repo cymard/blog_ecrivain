@@ -3,7 +3,8 @@
 require 'Model.php';
 
 class Article extends Model{
-    
+
+
     private $content;
     private $title;
     private $date;
@@ -75,16 +76,6 @@ class Article extends Model{
             $this->setId($donnees[$i]['id']);
             $this->setDate($donnees[$i]['date']);
         }
-
-        // //titres
-        // $this->setTitle($donnees[0]['title']);
-        // $this->setTitle($donnees[1]['title']);
-        // $this->setTitle($donnees[2]['title']);
-
-        // //content
-        // $this->setContent($donnees[0]['content']);
-        // $this->setContent($donnees[1]['content']);
-        // $this->setContent($donnees[2]['content']);
     }
 
 

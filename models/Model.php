@@ -3,17 +3,21 @@
 
 class Model{
 
-    public function connection(){
-        //avoir accès aux données, variables, méthodes
-        require 'database\ConnectDb.php';
-
-        //connexion à la bdd
-        return $connection->connect();// return l'objet PDO que return la methode connect()
+    public function __construct(){
+        require 'QueryBuilder.php';
+        return $querybuilder = new QueryBuilder(); //return pdo
     }
 
-    public function reqPosts($variable){
+    public function returnGetPosts(){
         require 'QueryBuilder.php';
-        return $queryBuilder->getPosts($variable);
+        return $this->getPosts();
+    }
+
+    public function hydrate(){
+
     }
 }
+
+$model = new Model(); //return objet pdo
+$model->returnGetPosts(); //return le fetchAll
 

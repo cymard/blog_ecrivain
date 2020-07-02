@@ -2,11 +2,19 @@
 
 class QueryBuilder {
 
-    public function getPosts($variable){
+    private $pdo;
 
-        return $variable->query("SELECT * FROM articles");
+    public function __construct(){
+        require 'database\ConnectDb.php'; 
+        $connection = new ConnectDb(); 
+        return $this->pdo = $connection->connect(); // return l'objet PDO
+    }
+
+    public function getPosts(){
+
+        $query = $this->pdo->query("SELECT * FROM articles");
+        return $query->fetchAll();
         
     }
-}
 
-$queryBuilder = new QueryBuilder();
+}
