@@ -6,17 +6,18 @@
 <?php ob_start(); ?>
 
 
-    <?php for($i = 0;$i < count($result); $i++ ){?>
+
+    <?php foreach($data as $value){ ?>
 
 
         <div class="card text-center">
             <div class="card-body">
-                <h3 class="card-title text-uppercase"><?php echo $result[$i]['title'];?></h3>
-                <p class="card-text "><?php echo $result[$i]['content']; ?></p>
+                <h3 class="card-title text-uppercase"><?php echo $value->getTitle();?></h3>
+                <p class="card-text "><?php echo $value->getContent(); ?></p>
                 <a href="#" class="btn btn-success">Lire l'article</a>
             </div>
             <div class="card-footer text-muted">
-               <?php echo 'publié le '.$result[$i]['date']?>
+               <?php echo 'publié le '.$value->getDate();?>
             </div>
         </div>
 

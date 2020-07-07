@@ -1,9 +1,11 @@
 <?php
 
+
+
 class ConnectDb {
 
     public function connect(){
-        require 'database\config.php'; 
+        require 'config.php'; 
 
         try{
             $db = new PDO('mysql:host='.$config['host'].';dbname='.$config['dbname'].';charset='.$config['charset'].'',$config['user'] ,$config['pass']);

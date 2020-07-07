@@ -1,23 +1,14 @@
 <?php
 
 
+
 class Model{
 
+    protected $queryBuilder;
+
     public function __construct(){
-        require 'QueryBuilder.php';
-        return $querybuilder = new QueryBuilder(); //return pdo
+        require_once 'QueryBuilder.php';
+        $this->queryBuilder = new QueryBuilder();
     }
 
-    public function returnGetPosts(){
-        require 'QueryBuilder.php';
-        return $this->getPosts();
-    }
-
-    public function hydrate(){
-
-    }
 }
-
-$model = new Model(); //return objet pdo
-$model->returnGetPosts(); //return le fetchAll
-

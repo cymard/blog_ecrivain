@@ -2,7 +2,7 @@
 
 class Router {
 
-    public function accueil(){
+    public function home(){
         require 'controllers\ControllerArticle.php';
 
         $url = '';
@@ -11,14 +11,14 @@ class Router {
             $url = explode('/',$_GET['url']);
             
             if($url[0] == 'accueil'){
-                $test->displayPosts();
+                $controllerArticle->displayPosts();
                 
             }else{
                 //page d'erreur
-                $test->displayPosts();
+                $controllerArticle->displayPosts();
             }
         }else{
-            $test->displayPosts();
+            $controllerArticle->displayPosts();
         }
 
     }

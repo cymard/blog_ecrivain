@@ -1,13 +1,14 @@
 <?php
 
+
 class QueryBuilder {
 
     private $pdo;
 
     public function __construct(){
-        require 'database\ConnectDb.php'; 
+        require_once 'database\ConnectDb.php'; 
         $connection = new ConnectDb(); 
-        return $this->pdo = $connection->connect(); // return l'objet PDO
+        $this->pdo = $connection->connect(); // return l'objet PDO
     }
 
     public function getPosts(){

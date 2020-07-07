@@ -1,8 +1,9 @@
 <?php
 
-require 'Model.php';
+require_once 'Model.php';
 
 class Article extends Model{
+
 
 
     private $content;
@@ -10,6 +11,9 @@ class Article extends Model{
     private $date;
     private $id;
 
+    function __construct() {
+        parent::__construct();
+    }
 
     //les getteurs
     public function getId(){
@@ -52,6 +56,19 @@ class Article extends Model{
         }
     }
 
+    public function getPosts(){
+        $result = [];
+        $posts = $this->queryBuilder->getPosts();
+        for($i = 0; $i<count($posts);$i++){
+            
+            $article = new Article();
+            $article->hydrate($posts[$i]);
+            array_push($result,$article);
+            
+        }
+        return $result;
+    }
+
 
     //hydratation des données
 
@@ -67,16 +84,5 @@ class Article extends Model{
             }
         }
     }
-
-    public function hydrateV2(array $donnees){
-        //hydrate adapté au return de fetchAll()
-        for($i = 0;$i < count($donnees); $i++ ){
-            $this->setTitle($donnees[$i]['title']);
-            $this->setContent($donnees[$i]['content']);
-            $this->setId($donnees[$i]['id']);
-            $this->setDate($donnees[$i]['date']);
-        }
-    }
-
 
 }
