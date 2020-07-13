@@ -4,8 +4,6 @@ require_once 'Model.php';
 
 class Article extends Model{
 
-
-
     private $content;
     private $title;
     private $date;
@@ -51,7 +49,7 @@ class Article extends Model{
     }
 
     public function setId($id){
-        if(is_int($id)){
+        if((int)$id){
             $this->id = $id;
         }
     }
@@ -60,13 +58,20 @@ class Article extends Model{
         $result = [];
         $posts = $this->queryBuilder->getPosts();
         for($i = 0; $i<count($posts);$i++){
-            
             $article = new Article();
             $article->hydrate($posts[$i]);
             array_push($result,$article);
             
         }
         return $result;
+
+    }
+
+    public function getPost($id){
+        $post = $this->queryBuilder->getPost($id);
+        $article = new Article();
+        $result = $article->hydrate($post);
+        return $post;
     }
 
 
@@ -81,6 +86,7 @@ class Article extends Model{
             if(method_exists($this,$method)){   //$this ou Articles(nom de la classe)
                 //on appelle la methode en lui attribuant la valeur
                 $this->$method($value);
+                // echo $method.' et '.$value.'<br>';
             }
         }
     }

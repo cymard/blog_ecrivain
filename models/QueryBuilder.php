@@ -18,4 +18,10 @@ class QueryBuilder {
         
     }
 
+    public function getPost($id){
+        $prepare = $this->pdo->prepare("SELECT title,date,content,id FROM articles WHERE id=?");
+        $prepare->execute(array($id));
+        return $prepare->fetch();
+    }
+
 }

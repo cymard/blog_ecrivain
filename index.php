@@ -5,7 +5,7 @@ require 'router\Router.php';
 try{
     // http://localhost/blog_ecrivain/
     $router = new Router();
-    $router->home();
+    $router->post();
 
     
 }catch(Exception $e){

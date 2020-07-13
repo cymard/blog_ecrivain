@@ -10,7 +10,16 @@ class ControllerArticle {
         $article = new Article();
         $data = $article->getPosts();
 
-        require 'views\articleView.php';
+        require 'views\indexView.php';
+    }
+
+    function displayPost($id){
+        require 'models\Article.php';
+        
+        $article = new Article();
+        $data = $article->getPost($id);
+
+        require 'views\postView.php';
     }
 
 }
