@@ -1,51 +1,61 @@
 <?php
 
+namespace router;
+
+
 class Router {
 
-    public function home(){
-        require 'controllers\ControllerArticle.php';
+    private $url;
 
-        $url = '';
-
+    public function init(){
+    
         if(isset($_GET['url'])){
-            $url = explode('/',$_GET['url']);
-            
-            if($url[0] == 'accueil'){
-                $controllerArticle->displayPosts();
-                
-            }else{
-                //page d'erreur
-                $controllerArticle->displayPosts();
-            }
+            $this->url = explode('/',$_GET['url']);
+
+            $this->home();
+            $this->post();
+            $this->admin();
         }else{
+            //appeler la page d'accueil
+            require 'controllers\ControllerArticle.php';
+            $controllerArticle->displayPosts();
+
+        }
+    }
+
+
+    public function home(){
+
+        if($this->url[0] == 'accueil'){
+            require 'controllers\ControllerArticle.php';
             $controllerArticle->displayPosts();
         }
 
     }
+
 
     public function post(){
-        require 'controllers\ControllerArticle.php';
 
-        $url = '';
+        if($this->url[0] == 'article' && isset($this->url[1]) && (int)$this->url[1]){
+            require 'controllers\ControllerArticle.php';
 
-        if(isset($_GET['url'])){
-            $url = explode('/',$_GET['url']);
+            $controllerArticle->displayPost($this->url[1]);
             
-            if($url[0] == 'article' && isset($url[1]) && (int)$url[1]){
-
-                $controllerArticle->displayPost($url[1]);
-                
-            }else{
-                //page d'erreur
-                $controllerArticle->displayPosts();
-            }
-        }else{
-            $controllerArticle->displayPosts();
         }
-
-
+            
     }
 
+
+    public function admin(){
+
+        if($this->url[0] == 'admin'){
+            // require 'controllers\ControllerArticle.php';
+            require 'controllers\ControllerAdmin.php';
+            $controllerAdmin->login();
+            
+        }
+
+    }
 
 }
 

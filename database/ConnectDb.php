@@ -1,6 +1,8 @@
 <?php
 
+namespace database;
 
+use PDO;
 
 class ConnectDb {
 

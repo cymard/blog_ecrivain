@@ -1,12 +1,15 @@
 <?php
 
+namespace models;
+
+use database\ConnectDb;
+
 
 class QueryBuilder {
 
     private $pdo;
 
     public function __construct(){
-        require_once 'database\ConnectDb.php'; 
         $connection = new ConnectDb(); 
         $this->pdo = $connection->connect(); // return l'objet PDO
     }
@@ -22,6 +25,11 @@ class QueryBuilder {
         $prepare = $this->pdo->prepare("SELECT title,date,content,id FROM articles WHERE id=?");
         $prepare->execute(array($id));
         return $prepare->fetch();
+    }
+
+    public function getLogin(){
+        $query = $this->pdo->query("SELECT * FROM account");
+        return $query->fetch();
     }
 
 }
