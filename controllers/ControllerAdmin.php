@@ -1,33 +1,71 @@
 <?php
+namespace controllers;
 
-use models\User;
+session_start();
+
+use models\Account;
+
 
 class ControllerAdmin{
     
 
     public function login(){
 
-        require 'views\backoffice\loginAdmin.php';
+        // redirection accueil si la session existe
+
+        if(isset($_SESSION['password']) && isset($_SESSION['username'])){
+            //si la session existe, renvoyer sur la page d'accueil du back office
+            header("Location: admin/accueil");
+
+        }else{
+            require 'views\backoffice\loginAdmin.php';
+        }
     }
 
     public function connection(){
 
-        $user = new User(); //connexion au model.php
-        $donnees = $user->theLogin(); //return le login et mdp
+        
+        if(isset($_POST['username']) && isset($_POST['password'])){
+            $_SESSION['username'] = $_POST['username'];
+            $Account = new Account();
+            $Account->getAccount($_POST['username']); //cherche le mdp à partir du login (querybuilder), ensuite hydrate le Account avec les infos
+    
+    
+            if(password_verify($_POST['password'],$Account->getPassword())){
+                $_SESSION['password'] = $_POST['password'];
 
-
-        if(password_verify($_POST['password'],$donnees['password'])){
-
-            require 'views\backoffice\accueilAdmin.php'; //appeler la page d'accueil pour l'admin
-        }else{
-            echo 'pas le bon password';
+                header("Location: admin/accueil");
+    
+            }else{
+    
+                echo '<p style="color: red;">Le nom d\' utilisateur ou le mot de passe est incorrecte</p>';
+    
+                require 'views\backoffice\loginAdmin.php';
+    
+            }
 
         }
 
     }
 
+    public function goAccueil(){
+        if(isset($_SESSION['password']) && isset($_SESSION['username'])){
+            //si la session existe, renvoyer sur la page d'accueil du back office
+            require 'views\backoffice\accueilAdmin.php';
+
+        }else{
+            //si la session n'existe pas
+            //renvoyer sur le login
+            header("Location: ../admin");
+        }
+        
+
+    }
+
+
+
     
 }
 
-$controllerAdmin = new ControllerAdmin();
+
 

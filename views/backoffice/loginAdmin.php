@@ -5,9 +5,9 @@
     </head>
     <body>
 
-        <form action="index.php" method="POST">
-            <label for="login">Login : </label>
-            <input type="text" id="login" name="login">
+        <form action="Router.php" method="POST">
+            <label for="username">Login : </label>
+            <input type="text" id="username" name="username">
 
             <br>
             <br>
