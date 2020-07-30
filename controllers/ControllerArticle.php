@@ -1,5 +1,7 @@
 <?php
 
+namespace controllers;
+
 use models\Article;
 
 
@@ -24,5 +26,5 @@ class ControllerArticle {
 
 }
 
-$controllerArticle = new ControllerArticle();
+
 

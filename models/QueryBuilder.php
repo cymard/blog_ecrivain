@@ -27,9 +27,10 @@ class QueryBuilder {
         return $prepare->fetch();
     }
 
-    public function getLogin(){
-        $query = $this->pdo->query("SELECT * FROM account");
-        return $query->fetch();
+    public function getLogin($login){
+        $prepare = $this->pdo->prepare("SELECT login,password FROM account WHERE login=?");
+        $prepare->execute(array($login));
+        return $prepare->fetch();
     }
 
 }

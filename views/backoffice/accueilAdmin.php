@@ -1,11 +1,13 @@
-<?php $title = 'accueil Admin'; ?>
-<?php $other = ''; ?>
-<?php ob_start(); ?>
+<!DOCTYPE html>
+<html>
+    <head>
+    
+    </head>
+    
+    <body>
+        <h2>Bienvenu Admin</h2>
+    </body>
+</html>
 
-<h2>Bienvenu Admin</h2>
 
 
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require 'views\templateFront.php'; ?>
