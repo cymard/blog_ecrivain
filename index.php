@@ -1,11 +1,15 @@
 <?php
 
-require 'router\Router.php';
+require 'vendor/autoload.php';
+
+use router\Router;
+
 
 try{
-    // http://localhost/blog_ecrivain/
+    // http://localhost/blog_ecrivain/ 
+
     $router = new Router();
-    $router->post();
+    $router->init();
 
     
 }catch(Exception $e){

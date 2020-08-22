@@ -1,11 +1,14 @@
 <?php
 
+namespace controllers;
+
+use models\Article;
+
 
 
 class ControllerArticle {
 
-    function displayPosts(){
-        require 'models\Article.php';
+    function displayPosts(){ 
 
         $article = new Article();
         $data = $article->getPosts();
@@ -13,8 +16,7 @@ class ControllerArticle {
         require 'views\indexView.php';
     }
 
-    function displayPost($id){
-        require 'models\Article.php';
+    function displayPost($id){   
         
         $article = new Article();
         $data = $article->getPost($id);
@@ -24,5 +26,5 @@ class ControllerArticle {
 
 }
 
-$controllerArticle = new ControllerArticle();
+
 
