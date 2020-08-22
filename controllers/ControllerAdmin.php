@@ -9,7 +9,7 @@ use models\Account;
 class ControllerAdmin{
     
 
-    public function login(){
+    public function goToLogin(){
 
         // redirection accueil si la session existe
 
@@ -49,17 +49,17 @@ class ControllerAdmin{
     }
 
     public function goAccueil(){
-        if(isset($_SESSION['password']) && isset($_SESSION['username'])){
-            //si la session existe, renvoyer sur la page d'accueil du back office
-            require 'views\backoffice\accueilAdmin.php';
+        $this->checkSession();
+        //si la session existe, renvoyer sur la page d'accueil du back office
+        require 'views\backoffice\accueilAdmin.php';
 
-        }else{
-            //si la session n'existe pas
-            //renvoyer sur le login
+    }
+
+    public function checkSession(){
+        //si la session n'existe pas, renvoyer sur la page du login
+        if(!isset($_SESSION['password']) && !isset($_SESSION['username'])){
             header("Location: ../admin");
         }
-        
-
     }
 
 

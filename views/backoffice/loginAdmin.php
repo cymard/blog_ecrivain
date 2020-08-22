@@ -5,7 +5,7 @@
     </head>
     <body>
 
-        <form action="Router.php" method="POST">
+        <form action="login" method="POST">
             <label for="username">Login : </label>
             <input type="text" id="username" name="username">
 

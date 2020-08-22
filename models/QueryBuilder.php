@@ -15,10 +15,8 @@ class QueryBuilder {
     }
 
     public function getPosts(){
-
         $query = $this->pdo->query("SELECT * FROM articles");
         return $query->fetchAll();
-        
     }
 
     public function getPost($id){
@@ -27,9 +25,9 @@ class QueryBuilder {
         return $prepare->fetch();
     }
 
-    public function getAccountByUsername($login){
-        $prepare = $this->pdo->prepare("SELECT login,password FROM account WHERE login=?");
-        $prepare->execute(array($login));
+    public function getAccountByUsername($username){
+        $prepare = $this->pdo->prepare("SELECT username,password FROM account WHERE username=?");
+        $prepare->execute(array($username));
         return $prepare->fetch();
     }
 
