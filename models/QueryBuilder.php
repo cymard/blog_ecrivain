@@ -31,4 +31,10 @@ class QueryBuilder {
         return $prepare->fetch();
     }
 
+    public function deletePost($id){
+        $prepare = $this->pdo->prepare("DELETE FROM articles WHERE id=?");
+        $prepare->execute(array($id));
+    }
+
+    // CURRENT_DATE()
 }

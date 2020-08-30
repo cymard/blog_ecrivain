@@ -4,6 +4,7 @@ namespace controllers;
 session_start();
 
 use models\Account;
+use models\Article;
 
 
 class ControllerAdmin{
@@ -15,7 +16,7 @@ class ControllerAdmin{
 
         if(isset($_SESSION['password']) && isset($_SESSION['username'])){
             //si la session existe, renvoyer sur la page d'accueil du back office
-            header("Location: admin/accueil");
+            header("Location: http://localhost/blog_ecrivain/admin/accueil");
 
         }else{
             require 'views\backoffice\loginAdmin.php';
@@ -34,7 +35,7 @@ class ControllerAdmin{
             if(password_verify($_POST['password'],$Account->getPassword())){
                 $_SESSION['password'] = $_POST['password'];
 
-                header("Location: admin/accueil");
+                header("Location: http://localhost/blog_ecrivain/admin/accueil");
     
             }else{
     
@@ -48,9 +49,11 @@ class ControllerAdmin{
 
     }
 
-    public function goAccueil(){
+    public function getPageAccueil(){
         $this->checkSession();
-        //si la session existe, renvoyer sur la page d'accueil du back office
+        // afficher les articles
+        $data = $this->displayPosts();
+        //  si la session existe, renvoyer sur la page d'accueil du back office
         require 'views\backoffice\accueilAdmin.php';
 
     }
@@ -58,11 +61,30 @@ class ControllerAdmin{
     public function checkSession(){
         //si la session n'existe pas, renvoyer sur la page du login
         if(!isset($_SESSION['password']) && !isset($_SESSION['username'])){
-            header("Location: ../admin");
+            header("Location: http://localhost/blog_ecrivain/admin");
         }
     }
 
+    public function displayPosts(){
+        $article = new Article();
+        return  $article->getPosts();
+    }
 
+    public function deletePost($id){
+        // bouton supprimer
+        $this->checkSession();
+        $article = new Article();
+        $article->deletePost($id);
+        header("Location: http://localhost/blog_ecrivain/admin/accueil"); //nous renvoie sur l'accueil admin apres suppression 
+
+    }
+
+    public function getPageCreate(){
+        $this->checkSession();
+        require '.\views\backoffice\creerAdmin.php';
+    }
+
+    
 
     
 }

@@ -79,6 +79,10 @@ class Article extends Model{
         return $post;
     }
 
+    public function deletePost($id){
+        $this->queryBuilder->deletePost($id);
+    }
+
 
 
 

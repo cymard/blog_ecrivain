@@ -25,32 +25,6 @@ class Router {
         if(isset($_GET['url'])){
             $this->url = explode('/',$_GET['url']);
 
-
-            // if($this->url[0] == 'accueil'){
-
-            //     $this->controllerArticle->displayPosts();
-
-            // }else if($this->url[0] == 'article' && isset($this->url[1]) && is_numeric($this->url[1])){
-
-            //     $this->controllerArticle->displayPost($this->url[1]);
-                
-            // }else if($this->url[0] == 'login' && $_SERVER['REQUEST_METHOD'] === 'POST'){
-
-            //     $this->controllerAdmin->connection();
-
-            // }else if($this->url[0] == 'admin' && !isset($this->url[1])){
-
-            //     $this->controllerAdmin->goToLogin();
-
-            // }else if($this->url[0] == 'admin' && $this->url[1] == 'accueil'){
-
-            //     $this->controllerAdmin->goAccueil();
-
-            // }else{
-            //     //appeler la page d'accueil
-            //     $this->controllerArticle->displayPosts();
-            // }
-
             switch ($this->url) {
 
                 //method GET :
@@ -67,13 +41,20 @@ class Router {
                 break;
 
                 case $this->url[0] === 'admin' && $this->url[1] == 'accueil':
-                    $this->controllerAdmin->goAccueil();
+                    $this->controllerAdmin->getPageAccueil();
                 break;
-                    
+
+                case $this->url[0] === "admin" && $this->url[1] === "creer" :
+                    $this->controllerAdmin->getPageCreate();
                     
                 //method POST :
                 case $this->url[0] === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST': 
                     $this->controllerAdmin->connection();
+                break;
+
+                //method DELETE :
+                case $this->url[0] === 'admin' && $this->url[1] === 'supprimer' && isset($this->url[2]) && is_numeric($this->url[2]):
+                    $this->controllerAdmin->deletePost($this->url[2]);
                 break;
 
                 default :
