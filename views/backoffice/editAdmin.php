@@ -1,31 +1,35 @@
 <?php
-$title = "creer un article";
+$title = "modification de l\'article";
 ob_start();
 // contenu head
 ?>
+
 <script src="https://cdn.tiny.cloud/1/i9vxlu7bi7fg25c1lmpw499gw3cy7ldoilwv66hhpjgpaqoj/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
-<?php
+
+<?php 
 $other = ob_get_clean();
 ob_start();
-
+// contenu body
 ?>
 
-<form action="http://localhost/blog_ecrivain/admin/creation" method="POST">
+
+
+<form action="http://localhost/blog_ecrivain/admin/edit/article/<?php echo $hydratedArticle->getId();?>" method="POST">
   <br>
   <label for="title">Titre : </label>
-  <input type="text" id="title" name="title" style="width : 50%">
+  <input type="text" id="title" name="title" value="<?php echo $hydratedArticle->getTitle(); ?>" style="width : 50%" required>
   <br>
   <br>
-  <textarea id="mytextarea" name="content">Saisissez le contenu de votre article</textarea>
+  <textarea id="mytextarea" name="content" ><?php echo $hydratedArticle->getContent(); ?></textarea>
   <br>
   <br>
-  <input type="submit" value="creer">
+  <input type="submit" value="modifier">
 </form>
 
 <script>
     tinymce.init({
-      selector: '#mytextarea', 
+      selector: '#mytextarea',
       toolbar_mode: 'floating',
       tinycomments_mode: 'embedded',
       tinycomments_author: 'Author name',
@@ -35,7 +39,8 @@ ob_start();
     });
 </script>
 
-<?php
+
+<?php 
 $content = ob_get_clean();
 require 'templateBack.php';
 ?>

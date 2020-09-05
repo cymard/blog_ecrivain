@@ -21,8 +21,9 @@ ob_start();
             <tr>
                 <td><?php echo $value->getTitle();?></td>
                 <td><?php echo $value->getDate();?></td>
-                <td><a class="btn btn-primary mb-3 text-uppercase"  href="#" value="Modification">Modifier</a></td>
-                <td><input class="btn btn-danger mb-3 text-uppercase" type="submit" value="Supprimer" /></td>
+                <td><a class="btn btn-primary mb-3 text-uppercase" href="http://localhost/blog_ecrivain/admin/edit/<?php echo $value->getid(); ?>" value="Modification">Modifier</a></td>
+                
+                <td><input class="btn btn-danger mb-3 text-uppercase" type="submit" value="Supprimer"/></td>
             </tr>
         </form>
         <?php } ?>

@@ -76,14 +76,22 @@ class Article extends Model{
         $post = $this->queryBuilder->getPost($id);
         $article = new Article();
         $result = $article->hydrate($post);
-        return $post;
+        return $article;
     }
 
     public function deletePost($id){
         $this->queryBuilder->deletePost($id);
     }
 
+    public function createPost($title,$content){
+        $this->queryBuilder->createPost($title,$content);
 
+    }
+
+    public function editPost($id,$title,$content){
+        $this->queryBuilder->editPost($id,$title,$content);
+        
+    }
 
 
 }

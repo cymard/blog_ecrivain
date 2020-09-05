@@ -49,6 +49,13 @@ class ControllerAdmin{
 
     }
 
+    public function checkSession(){
+        //si la session n'existe pas, renvoyer sur la page du login
+        if(!isset($_SESSION['password']) && !isset($_SESSION['username'])){
+            header("Location: http://localhost/blog_ecrivain/admin");
+        }
+    }
+
     public function getPageAccueil(){
         $this->checkSession();
         // afficher les articles
@@ -58,35 +65,16 @@ class ControllerAdmin{
 
     }
 
-    public function checkSession(){
-        //si la session n'existe pas, renvoyer sur la page du login
-        if(!isset($_SESSION['password']) && !isset($_SESSION['username'])){
-            header("Location: http://localhost/blog_ecrivain/admin");
-        }
-    }
-
     public function displayPosts(){
         $article = new Article();
         return  $article->getPosts();
-    }
-
-    public function deletePost($id){
-        // bouton supprimer
-        $this->checkSession();
-        $article = new Article();
-        $article->deletePost($id);
-        header("Location: http://localhost/blog_ecrivain/admin/accueil"); //nous renvoie sur l'accueil admin apres suppression 
-
     }
 
     public function getPageCreate(){
         $this->checkSession();
         require '.\views\backoffice\creerAdmin.php';
     }
-
-    
-
-    
+ 
 }
 
 
