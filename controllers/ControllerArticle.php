@@ -19,7 +19,7 @@ class ControllerArticle {
     function displayPost($id){   
         
         $article = new Article();
-        $data = $article->getPost($id);
+        $hydratedArticle = $article->getPost($id);
 
         require 'views\postView.php';
     }

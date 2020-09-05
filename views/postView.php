@@ -6,13 +6,13 @@
 
 
 
-<div class="card text-center">
+<div class="card">
     <div class="card-body">
-        <h3 class="card-title text-uppercase"><?php echo $data['title'];?></h3>
-        <p class="card-text "><?php echo $data['content']; ?></p>
+        <h3 class="card-title text-uppercase text-center"><?php echo $hydratedArticle->getTitle();?></h3>
+        <p class="card-text "><?php echo $hydratedArticle->getContent(); ?></p>
     </div>
-    <div class="card-footer text-muted">
-        <?php echo 'publié le '.$data['date'];?>
+    <div class="card-footer text-muted text-center">
+        <?php echo 'dernière publication le '.$hydratedArticle->getDate();?>
     </div>
 </div>
 
