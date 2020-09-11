@@ -3,6 +3,7 @@
 namespace controllers;
 
 use models\Article;
+use models\Comment;
 
 
 
@@ -20,7 +21,10 @@ class ControllerArticle {
         
         $article = new Article();
         $hydratedArticle = $article->getPost($id);
-
+        
+        $comment = new Comment();
+        $result = $comment->displayComments($id);
+        
         require 'views\postView.php';
     }
 

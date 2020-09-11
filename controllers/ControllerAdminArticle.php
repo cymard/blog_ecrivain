@@ -3,6 +3,7 @@
 namespace controllers;
 
 use models\Article;
+use models\Comment;
 
 class ControllerAdminArticle {
 
@@ -53,5 +54,7 @@ class ControllerAdminArticle {
 
         $article->createPost($title,$content);
     }
+
+
 
 }
