@@ -59,6 +59,7 @@ class Article extends Model{
         }
     }
 
+    // les methodes
     public function getPosts(){
         $result = [];
         $posts = $this->queryBuilder->getPosts();

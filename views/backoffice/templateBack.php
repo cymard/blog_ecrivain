@@ -18,7 +18,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/creer">Creer<span class="sr-only">(current)</span></a>
+                        <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/creer">Creer</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/signaler">Signaler</a>
                     </li>
                 </ul>
             </div>

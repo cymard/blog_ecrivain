@@ -12,6 +12,7 @@ ob_start();
         <tr>
             <th>Titre</th>
             <th>Date</th>
+            <th>commentaires</th>
             <th>Modifier</th>
             <th>Supprimer</th>
         </tr>
@@ -21,6 +22,7 @@ ob_start();
             <tr>
                 <td><?php echo $value->getTitle();?></td>
                 <td><?php echo $value->getDate();?></td>
+                <td><a class="btn btn-success mb-3 text-uppercase" href="http://localhost/blog_ecrivain/admin/article/<?php echo $value->getid(); ?>/commentaires" value="Commentaires">Commentaires</a></td>
                 <td><a class="btn btn-primary mb-3 text-uppercase" href="http://localhost/blog_ecrivain/admin/edit/<?php echo $value->getid(); ?>" value="Modification">Modifier</a></td>
                 
                 <td><input class="btn btn-danger mb-3 text-uppercase" type="submit" value="Supprimer"/></td>

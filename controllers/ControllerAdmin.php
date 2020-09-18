@@ -5,6 +5,7 @@ session_start();
 
 use models\Account;
 use models\Article;
+use models\Comment;
 
 
 class ControllerAdmin{
@@ -73,6 +74,15 @@ class ControllerAdmin{
     public function getPageCreate(){
         $this->checkSession();
         require '.\views\backoffice\creerAdmin.php';
+    }
+
+    public function getPageSignaler(){
+        $this->checkSession();
+
+        $comment = new Comment();
+        $data = $comment->displayReportComments();
+
+        require '.\views\backoffice\signalerAdmin.php';
     }
  
 }

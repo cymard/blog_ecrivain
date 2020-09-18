@@ -46,4 +46,36 @@ class QueryBuilder {
         $prepare->execute(array(':id' => $id,':title' => $title,':content' => $content));
     }
 
+    public function displayCommentsOfPost($id){
+        $prepare = $this->pdo->prepare("SELECT * FROM comments WHERE post_id=? ");
+        $prepare->execute(array($id));
+        return $prepare->fetchAll();
+    }
+
+    public function deleteComment($id){
+        $prepare = $this->pdo->prepare("DELETE FROM comments WHERE id=?");
+        $prepare->execute(array($id));
+        return $prepare->fetch();
+    }
+
+    public function addReportComment($id){
+        $prepare = $this->pdo->prepare("UPDATE `comments` SET `report`=1 WHERE id =?");
+        $prepare->execute(array($id));
+    }
+
+    public function displayReportComments(){
+        $query = $this->pdo->query("SELECT * FROM comments WHERE report = 1");
+        return $query->fetchAll();
+    }
+
+    public function ignoreComment($id){
+        $prepare = $this->pdo->prepare("UPDATE `comments` SET `report`=0 WHERE id =?");
+        $prepare->execute(array($id));
+    }
+
+    public function postComment($id,$username,$comment){
+        $prepare = $this->pdo->prepare("INSERT INTO `comments`(`post_id`, `content`, `date`, `username`, `report`) VALUES (:post_id,:content,CURRENT_DATE(),:username,0)");
+        $prepare->execute(array(':post_id' => $id,':content' => $comment, ':username' => $username));
+    }
+    
 }
