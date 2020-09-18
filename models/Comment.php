@@ -45,11 +45,11 @@ class Comment extends Model{
 
     // setteurs
     public function setUsername($username){
-        $this->username = $username;
+        $this->username = htmlspecialchars($username);
     }
 
     public function setContent($content){
-        $this->content = $content;
+        $this->content = htmlspecialchars($content);
     }
 
     public function setDate($date){

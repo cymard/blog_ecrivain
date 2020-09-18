@@ -23,7 +23,7 @@ class ControllerComment {
     }
 
     public function deleteComment($id){
-        $this->checkSession(); //pas nécessaire car method = delete ?
+        $this->checkSession();
         header("Location: http://localhost/blog_ecrivain/admin/accueil");
         
         $comment = new Comment();
@@ -38,6 +38,7 @@ class ControllerComment {
     }
 
     public function ignoreComment($id){
+        $this->checkSession();
         header("Location: http://localhost/blog_ecrivain/admin/signaler");
 
         $comment =  new Comment();
@@ -47,8 +48,23 @@ class ControllerComment {
     public function postComment($id){
         header("Location: http://localhost/blog_ecrivain/article/$id");
 
-        $comment = new Comment();
-        $comment->postComment($id,$_POST['username'],$_POST['comment']);
+        // vérification des données
+        if(isset($_POST['username']) && isset($_POST['comment']) && preg_match('`^([a-zA-Z0-9-_]{2,36})$`', $_POST['username'])){
+
+            // pas de script
+            $username = htmlspecialchars($_POST['username']);
+            $contentNoScript = htmlspecialchars($_POST['comment']);
+
+            // pas de caractères inutiles en début de chaine
+            $contentTrim = trim($contentNoScript);
+
+            // pas d'antislashs
+            $content = stripslashes($contentTrim);
+
+            $comment = new Comment();
+            $comment->postComment($id,$username,$content);
+        }
+        
     }
 
 }

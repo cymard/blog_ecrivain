@@ -22,7 +22,7 @@ ob_start();
                     <p class="card-text">"<?php echo $value->getContent(); ?>"</p>
                 </div>
                 <div class="card-footer text-right">
-                    <form action="http://localhost/blog_ecrivain/admin/commentaire/supprimer/<?php echo $value->getId(); ?>" method="DELETE">
+                    <form action="http://localhost/blog_ecrivain/admin/commentaire/supprimer/<?php echo $value->getId(); ?>" method="POST">
                         <input class="btn btn-outline-danger" type="submit" value="supprimer">
                     </form>
                 </div>

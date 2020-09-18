@@ -36,7 +36,7 @@ class Article extends Model{
     }
 
     
-    //les setteurs
+    // les setteurs
     public function setContent($content){
         if(is_string($content)){
             $this->content = $content;
@@ -50,7 +50,11 @@ class Article extends Model{
     }
 
     public function setDate($date){
-        $this->date = $date;//verif regex
+        $pattern = "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/";
+        if(preg_match($pattern,$date)){
+            $this->date = $date;
+        }
+        
     }
 
     public function setId($id){
@@ -59,10 +63,11 @@ class Article extends Model{
         }
     }
 
-    // les methodes
+    // les méthodes
     public function getPosts(){
         $result = [];
-        $posts = $this->queryBuilder->getPosts();
+        $posts = $this->queryBuilder->getPosts(); // on prend les infos sur tous les articles depuis la bdd
+        // on creer une instance de la classe d'article, on l'hydrate avec les données recupérées et on le push dans le tableau
         for($i = 0; $i<count($posts);$i++){
             $article = new Article();
             $article->hydrate($posts[$i]);
@@ -74,9 +79,9 @@ class Article extends Model{
     }
 
     public function getPost($id){
-        $post = $this->queryBuilder->getPost($id);
+        $post = $this->queryBuilder->getPost($id); // on prend les infos sur l'article depuis la bdd
         $article = new Article();
-        $result = $article->hydrate($post);
+        $result = $article->hydrate($post); // on hydrate l'instance de la class article avec les données recupérées
         return $article;
     }
 
