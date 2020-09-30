@@ -12,19 +12,11 @@
         <!-- nav bar -->
         <nav class="navbar navbar-expand-lg  navbar-light bg-primary ">
             <a class="navbar-brand text-white" href="http://localhost/blog_ecrivain/admin/accueil">Accueil</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/creer">Creer</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/signaler">Signaler</a>
-                    </li>
-                </ul>
-            </div>
+
+            <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/creer">Creer</a>
+
+            <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/signaler">Signaler</a>
+
         </nav>
 
         <!-- content -->

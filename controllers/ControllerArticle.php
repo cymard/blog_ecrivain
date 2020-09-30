@@ -17,7 +17,7 @@ class ControllerArticle {
         require 'views\indexView.php';
     }
 
-    function displayPost($id){   
+    function displayPostAndComments($id){   
         
         $article = new Article();
         $hydratedArticle = $article->getPost($id);

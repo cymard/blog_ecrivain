@@ -17,14 +17,18 @@ ob_start();
 
 <form action="http://localhost/blog_ecrivain/admin/edit/article/<?php echo $hydratedArticle->getId();?>" method="POST">
   <br>
-  <label for="title">Titre : </label>
-  <input type="text" id="title" name="title" value="<?php echo $hydratedArticle->getTitle(); ?>" style="width : 50%" required>
+  <div class="input-group mt-3" style="width: 80%; margin: 0 auto;">
+    <div class="input-group-prepend" >
+      <label for="title"  class="input-group-text">Titre : </label>
+    </div>
+    <input class="form-control" type="text" id="title" name="title" value="<?php echo $hydratedArticle->getTitle(); ?>" required>
+  </div>
   <br>
   <br>
   <textarea id="mytextarea" name="content" ><?php echo $hydratedArticle->getContent(); ?></textarea>
   <br>
   <br>
-  <input type="submit" value="modifier">
+  <input class="btn btn-primary btn-lg btn-block" style="width: 80%; margin: 0 auto;" type="submit" value="Modifier">
 </form>
 
 <script>

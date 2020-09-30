@@ -36,9 +36,9 @@ class Account extends Model{
     }
 
     public function getAccount($username){
-        $donnees = $this->queryBuilder->getAccountByUsername($username); //renvoi username et password
+        $donnees = $this->queryBuilder->getAccountByUsername($username); //renvoie username et password
 
-        if ($donnees == true){
+        if ($donnees == true){ // si le compte existe
             $this->hydrate($donnees);
         }
     }

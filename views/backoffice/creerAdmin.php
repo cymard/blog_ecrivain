@@ -8,19 +8,26 @@ ob_start();
 <?php
 $other = ob_get_clean();
 ob_start();
-
+// contenu body
 ?>
 
 <form action="http://localhost/blog_ecrivain/admin/creation" method="POST">
+  
   <br>
-  <label for="title">Titre : </label>
-  <input type="text" id="title" name="title" style="width : 50%">
+  <div class="input-group mt-3" style="width: 80%; margin: 0 auto;">
+    <div class="input-group-prepend" >
+      <label for="title"  class="input-group-text">Titre : </label>
+    </div>
+    <input class="form-control" type="text" id="title" name="title" required>
+  </div>
   <br>
   <br>
-  <textarea id="mytextarea" name="content">Saisissez le contenu de votre article</textarea>
+  <textarea id="mytextarea" name="content"><p style="text-align: center;">Saisissez le contenu de votre article</p></textarea>
   <br>
   <br>
-  <input type="submit" value="creer">
+  <input class="btn btn-primary btn-lg btn-block" style="width: 80%; margin: 0 auto;" type="submit" value="Creer">
+
+  
 </form>
 
 <script>

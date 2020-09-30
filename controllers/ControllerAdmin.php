@@ -10,13 +10,11 @@ use models\Comment;
 
 class ControllerAdmin{
     
-
+    // aller sur la page login
     public function goToLogin(){
 
-        // redirection accueil si la session existe
-
-        if(isset($_SESSION['password']) && isset($_SESSION['username'])){
-            //si la session existe, renvoyer sur la page d'accueil du back office
+        if(isset($_SESSION['username'])){
+            // si la session existe, renvoyer sur la page d'accueil du back office
             header("Location: http://localhost/blog_ecrivain/admin/accueil");
 
         }else{
@@ -24,17 +22,24 @@ class ControllerAdmin{
         }
     }
 
+    // connexion au compte Admin
     public function connection(){
 
-        
         if(isset($_POST['username']) && isset($_POST['password'])){
-            $_SESSION['username'] = $_POST['username'];
+            
+            // vérification des données
+            $username = htmlspecialchars($_POST['username']);
+            $password = htmlspecialchars($_POST['password']);
+            // fin de vérification des données
+
+
             $Account = new Account();
-            $Account->getAccount($_POST['username']); //cherche le mdp à partir du login (querybuilder), ensuite hydrate le Account avec les infos
+            $Account->getAccount($username); //cherche le mdp à partir du username entré dans la bdd, ensuite hydrate le model Account avec les infos
     
-    
-            if(password_verify($_POST['password'],$Account->getPassword())){
-                $_SESSION['password'] = $_POST['password'];
+            // si le mdp entré correspond au mdp en bdd
+            if(password_verify($password,$Account->getPassword())){
+                $_SESSION['username'] = $username;
+                
 
                 header("Location: http://localhost/blog_ecrivain/admin/accueil");
     
@@ -54,6 +59,7 @@ class ControllerAdmin{
         //si la session n'existe pas, renvoyer sur la page du login
         if(!isset($_SESSION['password']) && !isset($_SESSION['username'])){
             header("Location: http://localhost/blog_ecrivain/admin");
+            exit;
         }
     }
 
