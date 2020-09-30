@@ -2,7 +2,8 @@
 
 namespace controllers;
 
-use models\comment;
+use models\Comment;
+
 
 class ControllerComment {
 

@@ -29,8 +29,8 @@ class Router {
 
         // print_r($_SERVER['REQUEST_METHOD']);
         if(isset($_GET['url'])){
-            $this->url = explode('/',$_GET['url']);
 
+            $this->url = explode('/',$_GET['url']);
             switch ($this->url) {
 
                 //method GET :
@@ -47,7 +47,7 @@ class Router {
                     $this->controllerArticle->displayPostAndComments($this->url[1]);
                 break;
 
-                case $this->url[0] === 'admin' && !isset($this->url[1]) :
+                case $this->url[0] === 'admin'  && !isset($this->url[1])  :
                     $this->controllerAdmin->goToLogin();
                 break;
 
@@ -93,6 +93,7 @@ class Router {
                 case $this->url[0] === 'poster' && $this->url[1] === 'commentaire'  && $this->url[2] === 'article' && isset($this->url[3]) && is_numeric($this->url[3]) && $_SERVER['REQUEST_METHOD'] === 'POST':
                     $this->controllerComment->postComment($this->url[3]);
                 break;
+
 
                 // DELETE :
                 case $this->url[0] === 'admin' && $this->url[1] === 'supprimer' && isset($this->url[2]) && is_numeric($this->url[2]) && $_SERVER['REQUEST_METHOD'] === 'POST': 
