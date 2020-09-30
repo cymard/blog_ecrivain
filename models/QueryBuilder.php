@@ -15,7 +15,7 @@ class QueryBuilder {
     }
 
     public function getPosts(){
-        $query = $this->pdo->query("SELECT * FROM articles");
+        $query = $this->pdo->query("SELECT * FROM articles ORDER BY id DESC");
         return $query->fetchAll();
     }
 
@@ -47,7 +47,7 @@ class QueryBuilder {
     }
 
     public function displayCommentsOfPost($id){
-        $prepare = $this->pdo->prepare("SELECT * FROM comments WHERE post_id=? ");
+        $prepare = $this->pdo->prepare("SELECT * FROM comments WHERE post_id=? ORDER BY id DESC ");
         $prepare->execute(array($id));
         return $prepare->fetchAll();
     }
@@ -64,7 +64,7 @@ class QueryBuilder {
     }
 
     public function displayReportComments(){
-        $query = $this->pdo->query("SELECT * FROM comments WHERE report = 1");
+        $query = $this->pdo->query("SELECT * FROM comments WHERE report = 1 ORDER BY date DESC");
         return $query->fetchAll();
     }
 
