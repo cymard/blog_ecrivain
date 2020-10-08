@@ -2,7 +2,7 @@
 
 namespace models;
 
-use models\QueryBuilder;
+use database\QueryBuilder;
 
 
 

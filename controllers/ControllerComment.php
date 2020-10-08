@@ -9,7 +9,7 @@ class ControllerComment {
 
     public function checkSession(){
         //si la session n'existe pas, renvoyer sur la page du login
-        if(!isset($_SESSION['password']) && !isset($_SESSION['username'])){
+        if(!isset($_SESSION['username'])){
             header("Location: http://localhost/blog_ecrivain/admin");
         }
     }
@@ -50,7 +50,7 @@ class ControllerComment {
         header("Location: http://localhost/blog_ecrivain/article/$id");
 
         // vérification des données
-        if(isset($_POST['username']) && isset($_POST['comment']) && preg_match('`^([a-zA-Z0-9-_]{2,36})$`', $_POST['username'])){
+        if(isset($_POST['username']) && isset($_POST['comment']) && preg_match('`^([a-zA-Z0-9-_]{2,36})$`', $_POST['username']) && strlen($_POST['comment'])<=65536 ){
 
             // pas de script
             $username = htmlspecialchars($_POST['username']);

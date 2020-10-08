@@ -19,7 +19,7 @@
 
 
 <!-- form commentaire -->
-<div class="container p-4 border border-primary rounded bg-light" style="margin-top : 60px;">
+<div class="container p-4 border border-primary rounded bg-light" style="margin-top : 60px; height: 471px; width: 1140px; max-width: 90%;">
     <form action="http://localhost/blog_ecrivain/poster/commentaire/article/<?php echo $hydratedArticle->getId(); ?>" method="POST">
 
         <div class="row">
@@ -52,9 +52,9 @@
             <div class="card bg-light mb-3">
                 <div class="card-header">
                     <div class="row">
-                        <p class="col-3">Pseudo : <strong><?php echo $value->getUsername();?></strong></p>
-                        <div class="col-6"></div>
-                        <p class="col-3 text-right">publié le <?php echo $value->getDate(); ?></p>
+                        <p class="col-4">Pseudo : <strong><?php echo $value->getUsername();?></strong></p>
+                        <div class="col-3"></div>
+                        <p class="col-5 text-right">publié le <?php echo $value->getDate(); ?></p>
                     </div>
                 </div> 
                 <div class="card-body text-center bg-white">

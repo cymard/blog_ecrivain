@@ -1,6 +1,7 @@
 <?php $title = 'Accueil'; ?>
 
-<?php $other = ''; ?>
+
+<?php $other = " "; ?>
 
 
 <?php ob_start(); ?>
@@ -9,12 +10,14 @@
 <!-- banniere     -->
 
     <div class="card text-white" style="width: 100%; border: 0px;">
-        <img src="images/alaska001.jpg" style="width: 100%; border: 0px;" alt="Alaska paysage montagne route"> 
-        <div class="card-img-overlay text-center" style="margin-top: 100px">
-            <h5 class="card-title text-uppercase" style="font-size:5vw; text-shadow: 2px 2px 2px black;">Billet simple pour l'Alaska</h5>
-            <p class="card-text" style="font-size:2vw; ">Votre roman publié par épisode & écrit par Jean Forteroche</p>
+        <img id="image-background" src="images/alaska001.jpg" alt="Alaska paysage montagne route"> 
+        <div id="container-title" class="card-img-overlay text-center">
+            <h1 id="title" class="card-title text-uppercase" style="text-shadow: 2px 2px 2px black;">Billet simple pour l'Alaska</h1>
+            <p id="info"  class="card-text" >Votre roman publié par épisode & écrit par Jean Forteroche</p>
         </div>
     </div>
+
+    
 
     <br>
     <br>

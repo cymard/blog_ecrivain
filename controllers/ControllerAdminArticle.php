@@ -9,7 +9,7 @@ class ControllerAdminArticle {
 
     public function checkSession(){
         //si la session n'existe pas, renvoyer sur la page du login
-        if(!isset($_SESSION['password']) && !isset($_SESSION['username'])){
+        if(!isset($_SESSION['username'])){
             header("Location: http://localhost/blog_ecrivain/admin");
         }
     }
@@ -35,11 +35,15 @@ class ControllerAdminArticle {
         $this->checkSession();
         header("Location: http://localhost/blog_ecrivain/admin/accueil"); //nous renvoie sur l'accueil admin
 
-        $article = new Article();
-        $title = $_POST['title'];
-        $content = $_POST['content'];
+        if(isset($_POST['title']) && isset($_POST['content']) && strlen($_POST['title']) <=255 && strlen($_POST['content'])<=65536 ){
 
-        $article->editPost($id,$title,$content);
+            $article = new Article();
+            $title = $_POST['title'];
+            $content = $_POST['content'];
+    
+            $article->editPost($id,$title,$content);
+        }
+        
 
     }
 
@@ -48,11 +52,13 @@ class ControllerAdminArticle {
         
         header("Location: http://localhost/blog_ecrivain/admin/accueil"); //nous renvoie sur l'accueil admin
 
-        $article = new Article();
-        $title = $_POST['title'];
-        $content = $_POST['content'];
+        if(isset($_POST['title']) && isset($_POST['content']) && strlen($_POST['title']) <=255 && strlen($_POST['content'])<=65536  ){
+            $article = new Article();
+            $title = $_POST['title'];
+            $content = $_POST['content'];
 
-        $article->createPost($title,$content);
+            $article->createPost($title,$content);
+        }
     }
 
 
