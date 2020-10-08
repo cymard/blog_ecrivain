@@ -25,11 +25,19 @@ class ControllerAdmin{
     // connexion au compte Admin
     public function connection(){
 
-        if(isset($_POST['username']) && isset($_POST['password'])){
+        if(isset($_POST['username']) && isset($_POST['password']) && preg_match('`^([a-zA-Z0-9-_]{2,36})$`', $_POST['username']) && strlen($_POST['password'])<= 255 ){
             
             // vérification des données
-            $username = htmlspecialchars($_POST['username']);
+            // pas de script
+            $content = htmlspecialchars($_POST['username']);
             $password = htmlspecialchars($_POST['password']);
+
+            // pas de caractères inutiles en début de chaine
+            $contentTrim = trim($content);
+
+            // pas d'antislashs
+            $username = stripslashes($contentTrim);
+
             // fin de vérification des données
 
 
@@ -45,19 +53,19 @@ class ControllerAdmin{
     
             }else{
     
-                echo '<p style="color: red;">Le nom d\' utilisateur ou le mot de passe est incorrecte</p>';
-    
-                require 'views\backoffice\loginAdmin.php';
+                $this->getPageErrorConnection();
     
             }
 
+        }else{
+            $this->getPageErrorConnection();
         }
 
     }
 
     public function checkSession(){
         //si la session n'existe pas, renvoyer sur la page du login
-        if(!isset($_SESSION['password']) && !isset($_SESSION['username'])){
+        if(!isset($_SESSION['username'])){
             header("Location: http://localhost/blog_ecrivain/admin");
             exit;
         }
@@ -91,6 +99,11 @@ class ControllerAdmin{
         require '.\views\backoffice\signalerAdmin.php';
     }
  
+    public function getPageErrorConnection(){
+        echo '<p style="color: red;">Le nom d\' utilisateur ou le mot de passe est incorrecte</p>';
+    
+        require 'views\backoffice\loginAdmin.php';
+    }
 }
 
 

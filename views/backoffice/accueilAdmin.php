@@ -18,7 +18,7 @@ ob_start();
         </tr>
 
         <?php foreach($data as $value){ ?>
-        <form action="supprimer/<?php echo $value->getid(); ?>" method="DELETE">
+        <form action="supprimer/<?php echo $value->getid(); ?>" method="POST">
             <tr>
                 <td><?php echo $value->getTitle();?></td>
                 <td><?php echo $value->getDate();?></td>

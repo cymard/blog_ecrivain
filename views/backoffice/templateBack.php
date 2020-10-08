@@ -9,17 +9,25 @@
     
     </head>
     <body>
-        <!-- nav bar -->
-        <nav class="navbar navbar-expand-lg  navbar-light bg-primary ">
-            <a class="navbar-brand text-white" href="http://localhost/blog_ecrivain/admin/accueil">Accueil</a>
 
-            <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/creer">Creer</a>
 
-            <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/signaler">Signaler</a>
+        
+        <header>
+            <!-- nav bar -->
+            <nav class="navbar navbar-expand-lg  navbar-light bg-primary ">
+                <a class="navbar-brand text-white" href="http://localhost/blog_ecrivain/admin/accueil">Accueil</a>
 
-        </nav>
+                <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/creer">Creer</a>
+
+                <a class="nav-link text-white" href="http://localhost/blog_ecrivain/admin/signaler">Signaler</a>
+            </nav>
+        </header>
+
 
         <!-- content -->
-        <?php echo $content ?>
+        <main>
+            <?php echo $content ?>
+        </main>
+        
     </body>
 </html>
